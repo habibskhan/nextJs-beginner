@@ -1,0 +1,20 @@
+.comm_link_wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5em;
+    padding: 0;
+}
+
+.comm_link_wrapper .login_list {
+    font-size: 16px;
+    list-style: none;
+}
+
+.comm_link_wrapper .login_list:hover .login_link {
+    text-decoration: underline;
+}
+
+.comm_link_wrapper .login_link {
+    text-decoration: none;
+}

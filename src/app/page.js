@@ -1,95 +1,83 @@
-import Image from "next/image";
+"use client"
+import { useState } from "react";
 import styles from "./page.module.css";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+
+const Home = () => {
+  const router = useRouter();
+  const [name, SetName] = useState("Habib");
+
+  const navigate = (name) => {
+    router.push(name)
+  };
+
+  const changeName = () => {
+    SetName("Khan Habib");
+  };
+
+  const Fruits = () => {
+    alert("Apple");
+  };
+
+  const FruitsMul = (item) => {
+    alert(item);
+  };
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+      <main className={styles.main}>
+        Welcome to Next js learning program
+        {/* Linking and Navigation */}
+        <Link href="/login">Go to Login page</Link><br />
+        <Link href="/about">Go to About page</Link><br />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        {/* Navigation */}
+        <button onClick={() => router.push("/login")}>Go to Login page</button>
+        <button onClick={() => navigate("about")}>Go to About page</button>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        {/* compotnent */}
+        <User name="Habib" />
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+        {/* Button Note: In next we have different click event for client and server side */}
+        {/* To use client click event to call the "use client" directory. it should be always on top */}
+        <button onClick={() => alert("welcome habib khan")}>Click</button>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+        {/* call function on click */}
+        <button onClick={Fruits}>Click</button>
+        <button onClick={() => FruitsMul("Mangoe")}>Click</button>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        {/* In React js the number and string can be changed using state. when state is called it reders the component */}
+        <h4>Welcome to Next js learning program {name}</h4>
+        {/* <button onClick={changeName}>get full name</button> */}
+        <button onClick={() => changeName()}>get full name</button>
+
+
+      </main>
+    </>
   );
-}
+};
+
+export default Home;
+
+
+// compotnent on same file
+const User = (props) => {
+  return (
+    <>
+      <div>
+        <h1>
+          This is {props.name}
+        </h1>
+      </div>
+    </>
+  );
+};
+
+// Metadata
+// export function generateMetadata() {
+//   return {
+//     title: "Home page",
+//     description: "Welcome to Home Page",
+//   }
+// }
